@@ -3,14 +3,14 @@ package parser;
 /**
  * Created by Jason on 6/25/2015.
  */
-public class Rate {
+public class RoomRate {
   private String date;
   private String ratePlanName;
   private String roomTypeName;
   private String rateCost;
   private String rateLar;
 
-  public Rate(String date, String ratePlanName, String roomTypeName, String cost, String lar) {
+  public RoomRate(String date, String ratePlanName, String roomTypeName, String cost, String lar) {
     this.date = date;
     this.ratePlanName = ratePlanName;
     this.roomTypeName = roomTypeName;

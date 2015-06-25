@@ -1,8 +1,8 @@
 import junit.framework.Assert;
 import org.htmlparser.util.ParserException;
 import org.junit.Test;
-import parser.Rate;
-import parser.RateParser;
+import parser.RoomRate;
+import parser.RoomRateParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,63 +17,63 @@ import java.util.List;
 public class TestRateParser {
   @Test
   public void testSingleDayRate() throws ParserException {
-    List<Rate> rates = testFilePath("ratePages/singleDay/1.html");
-    Assert.assertEquals(rates.size(), 6);
-    print(rates);
+    List<RoomRate> roomRates = testFilePath("ratePages/singleDay/1.html");
+    Assert.assertEquals(roomRates.size(), 6);
+    print(roomRates);
   }
 
   @Test
   public void test6DayRates() throws ParserException {
-    List<Rate> rates = testFilePath("ratePages/sixDay/6.html");
-    Assert.assertEquals(rates.size(), 36);
-    print(rates);
+    List<RoomRate> roomRates = testFilePath("ratePages/sixDay/6.html");
+    Assert.assertEquals(roomRates.size(), 36);
+    print(roomRates);
   }
 
   @Test
   public void test2DayRates() throws ParserException {
-    List<Rate> rates = testFilePath("ratePages/twoDay/2.html");
-    Assert.assertEquals(rates.size(), 12);
-    print(rates);
+    List<RoomRate> roomRates = testFilePath("ratePages/twoDay/2.html");
+    Assert.assertEquals(roomRates.size(), 12);
+    print(roomRates);
   }
 
   @Test
   public void testSingleDayRateFromString() throws ParserException, IOException {
-    List<Rate> rates = testHtmlString("ratePages/singleDay/1.html");
-    Assert.assertEquals(rates.size(), 6);
-    print(rates);
+    List<RoomRate> roomRates = testHtmlString("ratePages/singleDay/1.html");
+    Assert.assertEquals(roomRates.size(), 6);
+    print(roomRates);
   }
 
   @Test
   public void test6DayRatesFromString() throws ParserException, IOException {
-    List<Rate> rates = testHtmlString("ratePages/sixDay/6.html");
-    Assert.assertEquals(rates.size(), 36);
-    print(rates);
+    List<RoomRate> roomRates = testHtmlString("ratePages/sixDay/6.html");
+    Assert.assertEquals(roomRates.size(), 36);
+    print(roomRates);
   }
 
   @Test
   public void test2DayRatesFromString() throws ParserException, IOException {
-    List<Rate> rates = testHtmlString("ratePages/twoDay/2.html");
-    Assert.assertEquals(rates.size(), 12);
-    print(rates);
+    List<RoomRate> roomRates = testHtmlString("ratePages/twoDay/2.html");
+    Assert.assertEquals(roomRates.size(), 12);
+    print(roomRates);
   }
 
-  private void print(List<Rate> rates) {
-    System.out.println("size :" + rates.size());
-    for (Rate r : rates) {
+  private void print(List<RoomRate> roomRates) {
+    System.out.println("size :" + roomRates.size());
+    for (RoomRate r : roomRates) {
       System.out.println(r);
     }
   }
 
-  private List<Rate> testFilePath(String fileName) throws ParserException {
+  private List<RoomRate> testFilePath(String fileName) throws ParserException {
     File file = getFile(fileName);
-    RateParser parser = new RateParser(file.getAbsolutePath());
-    return parser.getAllRates();
+    RoomRateParser parser = new RoomRateParser(file.getAbsolutePath());
+    return parser.getAllRoomRates();
   }
 
-  private List<Rate> testHtmlString(String fileName) throws ParserException, IOException {
+  private List<RoomRate> testHtmlString(String fileName) throws ParserException, IOException {
     String file = readFile(getFile(fileName).getPath());
-    RateParser parser = new RateParser(file);
-    return parser.getAllRates();
+    RoomRateParser parser = new RoomRateParser(file);
+    return parser.getAllRoomRates();
   }
 
   private File getFile(String fileName) {

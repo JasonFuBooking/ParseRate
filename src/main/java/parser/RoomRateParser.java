@@ -2,12 +2,10 @@ package parser;
 
 import org.htmlparser.Node;
 import org.htmlparser.Parser;
-import org.htmlparser.Tag;
 import org.htmlparser.filters.HasAttributeFilter;
 import org.htmlparser.tags.*;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
-import org.htmlparser.visitors.NodeVisitor;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,15 +14,15 @@ import java.util.*;
 /**
  * Created by Jason on 6/25/2015.
  */
-public class RateParser {
-  private List<Rate> allRates = new ArrayList<Rate>();
+public class RoomRateParser {
+  private List<RoomRate> allRoomRates = new ArrayList<RoomRate>();
 
   /**
    * Constructor
    * @param data could be a URL or a html String
    * @throws ParserException
    */
-  public RateParser(String data) throws ParserException {
+  public RoomRateParser(String data) throws ParserException {
     parseRatesFrom(data);
   }
 
@@ -47,8 +45,8 @@ public class RateParser {
         if (columns.length != 12) continue;
         String[] rateValue = getRateValue(row);
         String[] roomRateMap = getRoomRateMapString(columns[7]);
-        Rate rate = new Rate(dateList.get(i), roomRateMap[1], roomRateMap[0], rateValue[0], rateValue[1]);
-        allRates.add(rate);
+        RoomRate roomRate = new RoomRate(dateList.get(i), roomRateMap[1], roomRateMap[0], rateValue[0], rateValue[1]);
+        allRoomRates.add(roomRate);
       }
     }
   }
@@ -143,7 +141,7 @@ public class RateParser {
     return null;
   }
 
-  public List<Rate> getAllRates() {
-    return allRates;
+  public List<RoomRate> getAllRoomRates() {
+    return allRoomRates;
   }
 }
